@@ -1,0 +1,29 @@
+{
+  "name": "localstore",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "http-serve": "^1.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "browser-sync": "^2.24.6",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0"
+  },
+  "scripts": {
+    "server": "http-server ./build -c-1 -p 8081"
+  },
+  "author": "Grzegorz Tomicki",
+  "license": "ISC",
+  "keywords": [
+    "To Do List",
+    "Vanilla JS",
+    "localStorage"
+  ],
+  "description": "To Do List in Vanilla JS with localstorage"
+}

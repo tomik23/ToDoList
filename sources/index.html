@@ -1,0 +1,36 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>To Do List</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="container">
+        <form id="taskForm">
+            <h1>To Do List</h1>
+            <div class="form-group">
+                <label for="taskName">Task:</label>
+                <input type="text" id="taskName" class="form-control" name="taskName" required />
+            </div>
+            <div class="form-group">
+                <label for="taskDescription">Description:</label>
+                <textarea type="text" id="taskDescription" class="form-control" name="taskDescription" row="3"></textarea>
+            </div>
+            <div class="clearfix">
+                <button type="submit" class="btn btn-success">SAVE</button>
+            </div>
+        </form>
+        <div id="taskList"></div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
