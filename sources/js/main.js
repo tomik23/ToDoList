@@ -29,7 +29,7 @@ class PersonForm {
             let taskName = jsonParse.splice(0, 1);
             let taskDescription = jsonParse.splice(0, 1);
 
-            let description = taskDescription.map(w => w.length) > 0 ? `<p class="todo-description">${taskDescription}</p>` : '';
+            let description = taskDescription.map(w => w.length) > 0 ? `<p class="todo-description" title="show more">${taskDescription}</p>` : '';
 
             let html = `
                 <div data-id="${keyId}" style="position: relative;" ${unchecked}>
