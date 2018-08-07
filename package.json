@@ -11,9 +11,11 @@
     "babel-register": "^6.26.0",
     "browser-sync": "^2.24.6",
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
     "gulp-babel": "^7.0.1",
     "gulp-concat": "^2.6.1",
-    "gulp-cssmin": "^0.2.0"
+    "gulp-cssmin": "^0.2.0",
+    "gulp-sass": "^4.0.1"
   },
   "scripts": {
     "server": "http-server ./build -c-1 -p 8081"
