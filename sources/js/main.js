@@ -98,13 +98,13 @@ class PersonForm {
             let numberItems = this.getKeyLength();
             let taskID = numberItems === 0 ? 1 : numberItems + 1;
 
-            let personForm = {
-                'taskName': document.getElementById('taskName').value,
-                'taskDescription': document.getElementById('taskDescription').value
-            };
+            let taskName = document.getElementById('taskName').value;
+            let taskNameTrim = taskName.replace(/(^\s+|\s+$)/g,'');
+            document.getElementById('taskName').value = taskNameTrim;
+            let taskDescription = document.getElementById('taskDescription').value;
 
-            if (personForm.taskName !== "") {
-                let personItem = [personForm.taskName, personForm.taskDescription, 'unchecked'];
+            if (taskNameTrim) {
+                let personItem = [taskName, taskDescription, 'unchecked'];
 
                 localStorage.setItem(taskID, JSON.stringify(personItem));
 
@@ -113,8 +113,7 @@ class PersonForm {
 
             } else {
 
-                let formPerson = document.getElementById(this.formName);
-                formPerson.classList.add('novalid');
+                document.getElementById(this.formName).classList.add('novalid');
             }
 
         });
