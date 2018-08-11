@@ -5,6 +5,7 @@ const babel         = require('gulp-babel');
 const concat        = require('gulp-concat');
 const cssmin        = require('gulp-cssmin');
 const sass          = require('gulp-sass');
+const minify        = require('gulp-minify');
 const autoprefixer  = require('gulp-autoprefixer');
 const browserSync   = require('browser-sync');
 
@@ -25,6 +26,7 @@ gulp.task('js', function () {
         .pipe(babel({ presets: ['env'] }))
         .on('error', swallowError)
         .pipe(concat('main.js'))
+        .pipe(minify())
         .pipe(gulp.dest('./build'));
 });
 

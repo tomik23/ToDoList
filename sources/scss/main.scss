@@ -1,80 +1,85 @@
 * {
     box-sizing: border-box;
-    &::before, &::after {
-      box-sizing: border-box;
+    &::before,
+    &::after {
+        box-sizing: border-box;
     }
-  }
-  
-  html {
+}
+
+html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     margin: 0;
     padding: 0;
-  }
-  
-  body {
+}
+
+body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 16px;
     line-height: 1.5;
     color: #24292e;
-    background-color: rgb(246, 245, 245);
-  }
-  
-  .row {
+    background-color: #f6f5f5;
+}
+
+.row {
     display: flex;
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
-  }
-  
-  .container {
+}
+
+.container {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-  }
-  
-  #taskList {
+}
+
+.box-shadow {
+    box-shadow: 0 5px 15px 0 rgba(0,0,0,.11);
+}
+
+#taskList {
     margin: 30px auto;
     max-width: 900px;
-  }
-  
-  #taskForm {
+    border: 1px solid #cecece;
+}
+
+#taskForm {
     margin: 30px auto;
     max-width: 900px;
     padding: 20px;
-    background: #dfdfdf;
-    border: 1px solid #ced4da;
-    box-shadow: 0px 7px 5px -1px rgba(0, 0, 0, 0.1);
-    border-radius: 2px;
-  }
-  
-  #taskList > div {
+    background-color: #dfdfdf;
+    border: 1px solid #cecece;
+}
+
+#taskList>div {
     padding: 10px 20px 10px 40px;
     border-bottom: 1px solid #ced4da;
     &:nth-child(2n+1) {
-      background: #e7e7e7;
+        background-color: #e7e7e7;
     }
     &:hover {
-      background: rgb(95, 95, 95);
-      color: #fff;
+        background-color: #0b581c;
+        color: #fff;
+        transition: background-color .5s linear;
     }
     &:last-child {
-      border-bottom: none;
-      box-shadow: 0 6px 3px -2px rgba(0, 0, 0, 0.1);
+        border-bottom: none;
+        
     }
     &.checked {
-      background: #888;
-      color: #fff;
+        background-color: #888;
+        color: #fff;
     }
-  }
-  
-  #taskForm h1 {
+}
+
+#taskForm h1 {
     margin: 0 0 5px;
-  }
-  
-  .error {
+}
+
+.error {
     text-align: center;
     text-transform: uppercase;
     font-weight: 700;
@@ -83,23 +88,24 @@
     margin: auto;
     padding: 20px;
     background-color: #f2f2f2;
-  }
-  
-  .todo-description {
+}
+
+.todo-description {
     overflow: hidden;
     cursor: pointer;
-    max-height: 20px;
-    margin: 0 0 10px;
+    max-height: 24px;
+    margin: 0;
     white-space: nowrap;
     text-overflow: ellipsis;
     &.more {
-      max-height: 999px;
-      white-space: normal;
-      text-overflow: initial;
+        max-height: 9999px;
+        white-space: normal;
+        text-overflow: initial;
+        transition: max-height 1s ease-in-out;
     }
-  }
-  
-  .todo-remove {
+}
+
+.todo-remove {
     position: absolute;
     padding: 5px 10px;
     top: 0;
@@ -108,47 +114,48 @@
     z-index: 100;
     cursor: pointer;
     &:hover {
-      background: #000;
-      color: #fff;
+        background-color: #000;
+        color: #fff;
     }
     &:after {
-      content: "×";
+        content: "×";
     }
-  }
-  
-  .form-group {
+}
+
+.form-group {
     margin-bottom: 1rem;
-  }
-  
-  button {
+}
+
+button {
     border-radius: 0;
-  }
-  
-  label {
+}
+
+label {
     display: inline-block;
     margin-bottom: 0.5rem;
     font-weight: 700;
-  }
-  
-  input, button {
+}
+
+input,
+button {
     margin: 0;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-  }
-  
-  textarea {
+}
+
+textarea {
     margin: 0;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
     &.form-control {
-      height: auto;
-      resize: vertical;
+        height: auto;
+        resize: vertical;
     }
-  }
-  
-  .form-control {
+}
+
+.form-control {
     display: block;
     width: 100%;
     height: calc(2.25rem + 2px);
@@ -159,45 +166,45 @@
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
-    border-radius: 0.25rem;
     &:focus {
-      border: 1px solid #a4aab1;
-      outline: none;
+        border: 1px solid #a4aab1;
+        outline: none;
     }
-  }
-  
-  .checked {
+}
+
+.checked {
     &:before {
-      content: '';
-      position: absolute;
-      border-color: #fff;
-      border-style: solid;
-      border-width: 0 2px 2px 0;
-      top: 13px;
-      left: 16px;
-      transform: rotate(45deg);
-      height: 15px;
-      width: 7px;
+        content: '';
+        position: absolute;
+        border-color: #fff;
+        border-style: solid;
+        border-width: 0 2px 2px 0;
+        top: 13px;
+        left: 16px;
+        transform: rotate(45deg);
+        height: 15px;
+        width: 7px;
     }
-    .todo-title, .todo-description {
-      text-decoration: line-through;
+    .todo-title,
+    .todo-description {
+        text-decoration: line-through;
     }
-  }
-  
-  .todo-title {
+}
+
+.todo-title {
     cursor: pointer;
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  
-  .todo-description:before {
+}
+
+.todo-description:before {
     content: '↓';
     margin-right: 5px;
-  }
-  
-  .btn {
+}
+
+.btn {
     display: inline-block;
     font-weight: 400;
     text-align: center;
@@ -209,19 +216,19 @@
     font-size: 1rem;
     line-height: 1.5;
     cursor: pointer;
-  }
-  
-  .btn-success {
+}
+
+.btn-success {
     color: #fff;
     background-color: #28a745;
     border-color: #28a745;
     &:hover {
-      color: #fff;
-      background-color: #218838;
-      border-color: #1e7e34;
+        color: #fff;
+        background-color: #218838;
+        border-color: #1e7e34;
     }
-  }
-  
-  .novalid #taskName {
+}
+
+.novalid #taskName {
     border: 1px solid red;
-  }
+}
