@@ -46,6 +46,10 @@ body {
     border: 1px solid #cecece;
 }
 
+#taskList:empty {
+    border: 0;
+}
+
 #taskForm {
     margin: 30px auto;
     max-width: 900px;
