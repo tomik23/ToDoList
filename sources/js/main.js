@@ -24,10 +24,9 @@ class PersonForm {
         for(let i = 0; i<dataId.length; i++) {
             dataId[i].addEventListener('click', function () {
                 let countChecked = document.querySelectorAll('[data-id]:not(.checked)').length; 
-                console.log(countChecked);
                 if(countChecked > 0) {
                     left.style.visibility = "visible";
-                    left.innerHTML = `pozostało ${countChecked}`;
+                    left.innerHTML = `${countChecked} item left`;
                 } else {
                     left.removeAttribute("style");
                 }
@@ -37,7 +36,7 @@ class PersonForm {
         let countChecked = document.querySelectorAll('[data-id]:not(.checked)').length;
         if(countChecked > 0) {
             left.style.visibility = "visible";
-            left.innerHTML = `pozostało ${countChecked}`;
+            left.innerHTML = `${countChecked} item left`;
         }
 
     }
