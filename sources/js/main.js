@@ -9,20 +9,21 @@ class PersonForm {
         this.submitForm();
     };
 
-
-    getKeyLength() {
+    localStorageLengthSort(type) {
         let array = [];
         for (let i = 0; i < localStorage.length; i++) {
-            array.push(JSON.parse(localStorage.key(i)));
+            array.push(localStorage.key(i));
         }
-        return (array.length > 0) ? Math.max(...array) : 0;
-    };
+        array = (type === 'sort') ? array.sort((a, b) => a - b) : (array.length > 0) ? Math.max(...array) : 0;
+        return array;
+    }
 
     renerToDoList() {
 
-        for (let i = 0; i < localStorage.length; i++) {
+        let keyLocalStorage = this.localStorageLengthSort('sort');
 
-            let keyId = localStorage.key(i);
+        for (let key in keyLocalStorage) {
+            let keyId = keyLocalStorage[key];
             let value = localStorage[keyId];
             let itemsLocal = JSON.parse(value);
 
@@ -81,7 +82,7 @@ class PersonForm {
                 let data = localStorage.getItem(key);
                 let itemsLocal = JSON.parse(data);
 
-                (itemsLocal.pop() === 'unchecked') ? itemsLocal.push('checked') : itemsLocal.push('unchecked');
+                (itemsLocal.pop() === 'unchecked') ? itemsLocal.push('checked'): itemsLocal.push('unchecked');
 
                 localStorage.setItem(key, JSON.stringify(itemsLocal));
 
@@ -92,14 +93,15 @@ class PersonForm {
 
     submitForm() {
 
-        document.querySelector('form').addEventListener('submit', (e) => {
+        document.querySelector('form').addEventListener('submit', e => {
             e.preventDefault();
 
-            let numberItems = this.getKeyLength();
+            let numberItems = this.localStorageLengthSort();
+
             let taskID = numberItems === 0 ? 1 : numberItems + 1;
 
             let taskName = document.getElementById('taskName').value;
-            let taskNameTrim = taskName.replace(/(^\s+|\s+$)/g,'');
+            let taskNameTrim = taskName.replace(/(^\s+|\s+$)/g, '');
             document.getElementById('taskName').value = taskNameTrim;
             let taskDescription = document.getElementById('taskDescription').value;
 
