@@ -19,7 +19,7 @@
     "gulp-sass": "^4.0.1"
   },
   "scripts": {
-    "server": "http-server ./build -c-1 -p 8081"
+    "server": "http-server ./build -c-1 -p 8081 -o"
   },
   "author": "Grzegorz Tomicki",
   "license": "ISC",
