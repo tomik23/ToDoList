@@ -21,10 +21,10 @@ class PersonForm {
     countCheckItems() {
         let dataId = document.querySelectorAll('[data-id]');
         let left = document.querySelector('.left');
-        for(let i = 0; i<dataId.length; i++) {
+        for (let i = 0; i < dataId.length; i++) {
             dataId[i].addEventListener('click', function () {
-                let countChecked = document.querySelectorAll('[data-id]:not(.checked)').length; 
-                if(countChecked > 0) {
+                let countChecked = document.querySelectorAll('[data-id]:not(.checked)').length;
+                if (countChecked > 0) {
                     left.style.visibility = "visible";
                     left.innerHTML = `${countChecked} item left`;
                 } else {
@@ -34,7 +34,7 @@ class PersonForm {
         }
 
         let countChecked = document.querySelectorAll('[data-id]:not(.checked)').length;
-        if(countChecked > 0) {
+        if (countChecked > 0) {
             left.style.visibility = "visible";
             left.innerHTML = `${countChecked} item left`;
         }
@@ -42,6 +42,8 @@ class PersonForm {
     }
 
     renerToDoList() {
+
+        document.getElementById('taskList').innerHTML = '';
 
         let keyLocalStorage = this.localStorageLengthSort('sort');
 
@@ -52,16 +54,15 @@ class PersonForm {
 
             let taskName = itemsLocal[0];
             let taskDescription = (itemsLocal[1]) ? `<p class="todo-description" title="show more">${itemsLocal[1]}</p>` : '';
-            let taskCheck = (itemsLocal[2] === 'checked') ? 'class="checked"' : '';
+            let taskCheck = (itemsLocal[2] === 'checked') ? 'checked' : '';
 
             let htmlTemplate = `
-                <div data-id="${keyId}" style="position: relative;" ${taskCheck}>
-                    <p class="todo-title">${taskName}</p>
-                    ${taskDescription}
-                    <span class="todo-remove" title="remove task"></span>
-                </div>
+                <p class="todo-title">${taskName}</p>
+                ${taskDescription}
+                <span class="todo-remove" title="remove task"></span>
             `;
-            document.getElementById('taskList').innerHTML += htmlTemplate;
+
+            this.appendItemsToList({ htmlTemplate, keyId, taskCheck });
         }
 
         this.removeTask();
@@ -70,6 +71,20 @@ class PersonForm {
         this.countCheckItems();
 
     };
+
+    appendItemsToList(options) {
+        let div = document.createElement('div');
+        let attribute = {
+            'data-id': options.keyId,
+            'style': 'position: relative',
+            'class': options.taskCheck
+        };
+        for (let key of Object.keys(attribute)) {
+            div.setAttribute(key, attribute[key])
+        }
+        div.innerHTML = options.htmlTemplate;
+        document.getElementById('taskList').appendChild(div);
+    }
 
     removeTask() {
         let items = document.querySelectorAll('.todo-remove');
@@ -106,7 +121,7 @@ class PersonForm {
                 let data = localStorage.getItem(key);
                 let itemsLocal = JSON.parse(data);
 
-                (itemsLocal.pop() === 'unchecked') ? itemsLocal.push('checked'): itemsLocal.push('unchecked');
+                (itemsLocal.pop() === 'unchecked') ? itemsLocal.push('checked') : itemsLocal.push('unchecked');
 
                 localStorage.setItem(key, JSON.stringify(itemsLocal));
 
@@ -135,7 +150,7 @@ class PersonForm {
                 localStorage.setItem(taskID, JSON.stringify(personItem));
 
                 document.getElementById(this.formName).reset();
-                location.reload();
+                this.renerToDoList();
 
             } else {
 
