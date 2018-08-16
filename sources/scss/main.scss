@@ -80,6 +80,8 @@ body {
 }
 
 #taskForm h1 {
+    display: flex;
+    align-items: baseline;
     margin: 0 0 5px;
 }
 
@@ -235,4 +237,11 @@ textarea {
 
 .novalid #taskName {
     border: 1px solid red;
+}
+
+.left {
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 20px;
+    visibility: hidden;
 }

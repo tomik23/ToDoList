@@ -18,6 +18,30 @@ class PersonForm {
         return array;
     }
 
+    countCheckItems() {
+        let dataId = document.querySelectorAll('[data-id]');
+        let left = document.querySelector('.left');
+        for(let i = 0; i<dataId.length; i++) {
+            dataId[i].addEventListener('click', function () {
+                let countChecked = document.querySelectorAll('[data-id]:not(.checked)').length; 
+                console.log(countChecked);
+                if(countChecked > 0) {
+                    left.style.visibility = "visible";
+                    left.innerHTML = `pozostało ${countChecked}`;
+                } else {
+                    left.removeAttribute("style");
+                }
+            });
+        }
+
+        let countChecked = document.querySelectorAll('[data-id]:not(.checked)').length;
+        if(countChecked > 0) {
+            left.style.visibility = "visible";
+            left.innerHTML = `pozostało ${countChecked}`;
+        }
+
+    }
+
     renerToDoList() {
 
         let keyLocalStorage = this.localStorageLengthSort('sort');
@@ -44,6 +68,7 @@ class PersonForm {
         this.removeTask();
         this.doneCheckOrChecked();
         this.showMore();
+        this.countCheckItems();
 
     };
 
