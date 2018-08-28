@@ -145,6 +145,8 @@ class PersonForm {
             let taskDescription = document.getElementById('taskDescription').value;
 
             if (taskNameTrim) {
+
+                document.getElementById(this.formName).classList.remove('novalid');
                 let personItem = [taskName, taskDescription, 'unchecked'];
 
                 localStorage.setItem(taskID, JSON.stringify(personItem));
