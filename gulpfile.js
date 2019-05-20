@@ -1,61 +1,71 @@
-'use strict';
+const gulp = require('gulp');
+const babel = require('gulp-babel');
+const concat = require('gulp-concat');
+const cssmin = require('gulp-cssmin');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
 
-const gulp          = require('gulp');
-const babel         = require('gulp-babel');
-const concat        = require('gulp-concat');
-const cssmin        = require('gulp-cssmin');
-const sass          = require('gulp-sass');
-const minify        = require('gulp-minify');
-const autoprefixer  = require('gulp-autoprefixer');
-const browserSync   = require('browser-sync');
-
-function swallowError(error) {
-    console.log(error.toString())
-    this.emit('end')
+const paths = {
+    styles: {
+        src: './sources/scss/**/*',
+        dest: './build'
+    },
+    script: {
+        src: './sources/js/**/*',
+        dest: './build'
+    },
+    html: {
+        src: './sources/index.html',
+        dest: './build'
+    }
 }
 
-let autoprefixerOptions = {
+function swallowError(error) {
+    console.log(error.toString());
+    this.emit('end');
+}
+
+const autoprefixerOptions = {
     browsers: ['> 1%', 'last 3 versions']
 };
 
-/**
- * js
- */
-gulp.task('js', function () {
-    return gulp.src('sources/js/**/*')
-        .pipe(babel({ presets: ['env'] }))
-        .on('error', swallowError)
-        .pipe(concat('main.js'))
-        .pipe(minify())
-        .pipe(gulp.dest('./build'));
-});
+// js
+// js
+function script() {
+    return gulp
+        .src(paths.script.src)
+        .pipe(babel({ presets: ['@babel/env'] })).on('error', swallowError)
+        .pipe(concat('main.min.js'))
+        .pipe(gulp.dest(paths.script.dest))
+}
 
-/**
- * sass
- */
-gulp.task('scss', function () {
-    return gulp.src('sources/scss/**/*')
+// sass 
+function styles() {
+    return gulp
+        .src(paths.styles.src)
         .pipe(sass.sync().on('error', sass.logError))
         .pipe(cssmin())
         .pipe(autoprefixer(autoprefixerOptions))
-        .pipe(gulp.dest('./build'));
-});
+        // .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest(paths.styles.dest))
+}
 
-/**
- * html
- */
-gulp.task('html', function () {
-    return gulp.src('sources/index.html')
-        .pipe(gulp.dest('./build'));
-});
+// html
+function html() {
+    return gulp
+        .src(paths.html.src)
+        .pipe(gulp.dest(paths.html.dest))
+}
 
-/**
- * watch
- */
-gulp.task('watch', function () {
-    gulp.watch('sources/index.html', ['html', 'scss', 'js']).on('change', browserSync.reload);
-    gulp.watch('sources/scss/**/*.scss', ['scss']).on('change', browserSync.reload);
-    gulp.watch('sources/js/**/*.js', ['js']).on('change', browserSync.reload);
-});
+// watch
+function watch() {
+    gulp.watch(paths.styles.src, styles);
+    gulp.watch(paths.script.src, script);
+    gulp.watch(paths.html.src, html);
+}
 
-gulp.task('default', ['watch', 'html', 'scss', 'js']);
+const build = gulp.series(watch, gulp.parallel(styles, script, html));
+// const build = gulp.parallel(styles, script, html, watch);
+
+exports.watch = watch;
+exports.build = build;

@@ -1,22 +1,18 @@
 {
   "name": "localstore",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
-  "dependencies": {
-    "http-serve": "^1.0.1"
-  },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
-    "browser-sync": "^2.24.6",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^5.0.0",
-    "gulp-babel": "^7.0.1",
+    "gulp": "^4.0.0",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/register": "^7.4.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-autoprefixer": "^6.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssmin": "^0.2.0",
     "gulp-minify": "^3.1.0",
-    "gulp-sass": "^4.0.1"
+    "gulp-sass": "^4.0.2"
   },
   "scripts": {
     "server": "http-server ./build -c-1 -p 8081 -o"
