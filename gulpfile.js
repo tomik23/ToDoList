@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
-const cssmin = require('gulp-cssmin');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 
@@ -44,7 +43,6 @@ function styles() {
     return gulp
         .src(paths.styles.src)
         .pipe(sass.sync().on('error', sass.logError))
-        .pipe(cssmin())
         .pipe(autoprefixer(autoprefixerOptions))
         // .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(paths.styles.dest))
