@@ -3,8 +3,8 @@ const light = {
   lightText: 'light',
   lightColorA: 'whitesmoke',
   lightColorB: '#363636',
-  lightOn: 'is-on',
-  lightOff: 'is-off',
+  lightOn: 'is-todo-on',
+  lightOff: 'is-todo-off',
 };
 
 export default light;

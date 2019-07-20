@@ -11,6 +11,7 @@ class ToDoListController {
     this.more = 'more';
     this.taskName = '#taskName';
     this.taskDescription = '#taskDescription';
+    this.buttonText = '.button-text';
 
     this.storage = storage;
     this.counter = counter;
@@ -33,7 +34,7 @@ class ToDoListController {
       const name = document.querySelector(this.taskName).value.trim();
       const description = document.querySelector(this.taskDescription);
 
-      const typeInsert = document.querySelector('.button-text').value;
+      const typeInsert = document.querySelector(this.buttonText).value;
 
       const insertType =
         typeInsert === 'text' ? description.textContent : description.innerHTML;
@@ -117,7 +118,7 @@ class ToDoListController {
   }
 
   handleEvent() {
-    const todoItem = document.querySelectorAll('.item');
+    const todoItem = document.querySelectorAll(`.${this.item}`);
 
     todoItem.forEach(item => {
       item.addEventListener('click', e => {

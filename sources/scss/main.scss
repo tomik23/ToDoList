@@ -177,7 +177,6 @@
     margin-left: 20px;
   }
 
-
   .more .todo-description {
     max-height: 700px;
     white-space: normal;
@@ -205,33 +204,34 @@
     }
   }
 
-  .todo-description::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: var(--gray-light);
-    border-radius: 10px;
-  }
+  .todo-description {
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: var(--gray-light);
+      border-radius: 10px;
+    }
 
-  .todo-description::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-    background-color: var(--gray-light);
-  }
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+      background-color: var(--gray-light);
+    }
 
-  .todo-description::-webkit-scrollbar-thumb {
-    background-color: var(--blue);
-    border-radius: 10px;
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--blue);
+      border-radius: 10px;
+    }
   }
 
 }
 
-
-.is-on #light:after {
-  content: 'ON'
-}
-
-.is-on {
+.is-todo-on {
   #light {
     color: var(--white);
+
+    &:after {
+      content: 'ON'
+    }
   }
 
   color: var(--light);
@@ -251,5 +251,4 @@
   .taskDescription {
     color: var(--gray-dark)
   }
-
 }
