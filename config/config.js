@@ -1,5 +1,5 @@
 const options = {
-  sesionType: localStorage
-}
+  sesionType: localStorage,
+};
 
 export default options;

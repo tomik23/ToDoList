@@ -8,7 +8,7 @@ class StorageService {
   }
 
   getItemFromStorage(value) {
-    return JSON.parse(this.sessionType.getItem(value))
+    return JSON.parse(this.sessionType.getItem(value));
   }
 
   removeItemFromStorage(value) {

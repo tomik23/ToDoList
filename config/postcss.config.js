@@ -5,6 +5,7 @@ module.exports = {
       url: 'inline',
       maxSize: 50,
     },
+    'postcss-css-variables': {},
     cssnano: {
       safe: true,
     },

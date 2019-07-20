@@ -2,7 +2,7 @@ const counter = {
   checked: '.checked',
   item: '.item',
   leftTask: '.leftTask',
-  taskLeftText: 'task left'
-}
+  taskLeftText: 'task left',
+};
 
 export default counter;

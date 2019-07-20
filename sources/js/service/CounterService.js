@@ -10,10 +10,10 @@ class CounterService {
     const taskLeft = document.querySelector(leftTask);
 
     let textLeft;
-    if (countChecked === 0) {
-      textLeft = `${taskItem} ${taskLeftText}`;
-    } else if (taskItem === countChecked) {
+    if (taskItem === 0 && countChecked === 0) {
       textLeft = '';
+    } else if (countChecked === 0) {
+      textLeft = `${taskItem} ${taskLeftText}`;
     } else {
       textLeft = `${taskItem - countChecked} ${taskLeftText}`;
     }

@@ -1,41 +1,63 @@
 class ButtonsService {
-  constructor({ insertId, insertClassMode, insertClassType, typeText, typeHtml, rowClass, taskDescription }) {
+  constructor({
+    insertId,
+    buttonToolbar,
+    typeText,
+    typeHtml,
+    rowClass,
+    taskDescription,
+    buttons,
+  }) {
     this.insertId = insertId;
-    this.insertClassMode = insertClassMode;
-    this.insertClassType = insertClassType;
+    this.buttonToolbar = buttonToolbar;
     this.typeText = typeText;
     this.typeHtml = typeHtml;
     this.rowClass = rowClass;
     this.taskDescription = taskDescription;
+    this.buttons = buttons;
   }
 
   buttonCreate() {
-    const typeInsert = document.createElement('input');
-    typeInsert.setAttribute('id', this.insertId);
-    typeInsert.setAttribute('type', 'button');
-    typeInsert.setAttribute('class', `${this.insertClassMode} ${this.insertClassType}`);
-    typeInsert.value = this.typeText;
-
     const row = document.createElement('div');
     row.setAttribute('class', `${this.rowClass}`);
-    row.append(typeInsert);
 
-    const task = document.querySelector(this.taskDescription);
-    task.parentNode.insertBefore(row, task.nextSibling);
+    this.buttons.forEach(button => {
+      const typeInsert = document.createElement('input');
+      typeInsert.setAttribute('type', 'button');
+      typeInsert.setAttribute(
+        'class',
+        `${this.buttonToolbar} button-${button.type}`
+      );
+      typeInsert.setAttribute('data-command', button.type);
+      typeInsert.value = button.key;
 
-    this.buttonType();
+      row.append(typeInsert);
+    });
+
+    const buttonItems = document.querySelector(this.taskDescription);
+    buttonItems.parentNode.insertBefore(row, buttonItems.nextSibling);
+
+    this.buttonEvent();
   }
 
-  buttonType() {
-    const buttonType = document.querySelector(`.${this.insertClassType}`);
+  buttonEvent() {
+    const buttons = document.querySelectorAll(`.${this.buttonToolbar}`);
 
-    buttonType.addEventListener('click', () => {
-      const buttonvalue = buttonType.getAttribute('value');
-      const test = buttonvalue === this.typeText ? this.typeHtml : this.typeText;
-      buttonType.setAttribute('value', test);
+    buttons.forEach(button => {
+      button.addEventListener('click', e => {
+        const { target } = e;
+
+        const command = target.getAttribute('data-command');
+
+        document.execCommand(command, false, null);
+
+        const type =
+          target.value === this.typeText ? this.typeHtml : this.typeText;
+
+        document.querySelector('.button-text').value = type;
+      });
     });
   }
-
 }
 
 export default ButtonsService;

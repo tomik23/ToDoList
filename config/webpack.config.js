@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 function prodPlugin(plugin, argv) {
-  return argv.mode === 'production' ? plugin : () => { };
+  return argv.mode === 'production' ? plugin : () => {};
 }
 
 module.exports = (env, argv) => ({
@@ -64,7 +64,7 @@ module.exports = (env, argv) => ({
       new CleanWebpackPlugin({
         verbose: true,
       }),
-      argv,
+      argv
     ),
     new MiniCssExtractPlugin({
       filename: '[name].[hash].css',

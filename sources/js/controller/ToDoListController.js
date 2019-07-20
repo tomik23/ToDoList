@@ -1,57 +1,64 @@
-import formTemplate from "../view/FormView";
+import FormView from '../view/FormView';
 
 class ToDoListController {
-  constructor(storage, counter, buttons) {
+  constructor(storage, counter, buttons, light) {
     this.todolist = 'todolist';
-    this.taskList = '#taskList';
+    this.taskList = '.taskList';
     this.item = 'item';
     this.checked = 'checked';
-    this.taskForm = 'taskForm';
+    this.taskForm = '.taskForm';
     this.dataId = 'data-id';
     this.more = 'more';
-    this.light = 'light';
+    this.taskName = '#taskName';
+    this.taskDescription = '#taskDescription';
 
     this.storage = storage;
     this.counter = counter;
-    
-    const app = document.querySelector('.app-todo');
-    app.innerHTML = formTemplate;
-    buttons.buttonCreate();
+    this.buttons = buttons;
+    this.light = light;
+
+    const formView = new FormView();
+    formView.renderView('.app-todo');
   }
 
   initTodoList() {
     const save = document.getElementById('save');
 
-    save.addEventListener('click', (e) => {
+    save.addEventListener('click', e => {
       e.stopPropagation();
       e.preventDefault();
 
       const id = this.getLastId();
 
-      const name = document.querySelector('#taskName').value.trim();
-      const description = document.querySelector('#taskDescription');
+      const name = document.querySelector(this.taskName).value.trim();
+      const description = document.querySelector(this.taskDescription);
 
-      const typeInsert = document.querySelector('#typeInsert').value;
+      const typeInsert = document.querySelector('.button-text').value;
 
-      const insertType = typeInsert === 'text' ? description.innerText : description.innerHTML;
+      const insertType =
+        typeInsert === 'text' ? description.textContent : description.innerHTML;
 
       if (name) {
         const list = {
-          id, name, info: insertType, check: false,
+          id,
+          name,
+          info: insertType,
+          check: false,
         };
         description.innerHTML = '';
         this.createLocalStorage(list);
       }
     });
     this.output();
-    this.switchLight();
+    this.light.switchLight();
+    this.buttons.buttonCreate();
   }
 
   getLastId() {
     const lengthStorage = this.storage.getItemFromStorage(this.todolist);
     const id = [];
     if (lengthStorage) {
-      lengthStorage.forEach((item) => {
+      lengthStorage.forEach(item => {
         id.push(item.id);
       });
     }
@@ -61,7 +68,9 @@ class ToDoListController {
   }
 
   createLocalStorage(list) {
-    const store = this.storage.getItemFromStorage(this.todolist) ? this.storage.getItemFromStorage(this.todolist) : [];
+    const store = this.storage.getItemFromStorage(this.todolist)
+      ? this.storage.getItemFromStorage(this.todolist)
+      : [];
 
     store.push(list);
 
@@ -69,18 +78,8 @@ class ToDoListController {
     this.storage.setToStorage(this.todolist, store);
 
     this.output();
-    document.getElementById(this.taskForm).reset();
+    document.querySelector(this.taskForm).reset();
   }
-
-  // storageE() {
-  //   const store = JSON.parse(localStorage.getItem(this.todolist));
-  //   return store;
-  // }
-
-  // saveToLocarstore(store) {
-  //   localStorage.removeItem(this.todolist);
-  //   localStorage.setItem(this.todolist, JSON.stringify(store));
-  // }
 
   output() {
     // this.storageE()
@@ -88,12 +87,9 @@ class ToDoListController {
     const storage = this.storage.getItemFromStorage(this.todolist);
 
     if (storage) {
-      storage.map(({
-        id, name, info, check,
-      }) => {
+      storage.map(({ id, name, info, check }) => {
         const div = document.createElement('div');
         const infoTask = info;
-        // const infoTask = info.replace(new RegExp('\r?\n', 'g'), '<br>');
         const idNumber = id === null ? 1 : id;
         const checked = check === true ? this.checked : '';
         const taskList = document.querySelector(this.taskList);
@@ -107,7 +103,8 @@ class ToDoListController {
         div.setAttribute('style', 'position: relative');
 
         const row = `
-          <div class="todo-title">${name}</div>${taskDescription}
+          <div class="todo-title">${name}</div>
+          ${taskDescription}
           <span class="todo-remove" title="remove task"></span>
         `;
         div.innerHTML = row;
@@ -122,26 +119,31 @@ class ToDoListController {
   handleEvent() {
     const todoItem = document.querySelectorAll('.item');
 
-    todoItem.forEach((item) => {
-      item.addEventListener('click', (e) => {
+    todoItem.forEach(item => {
+      item.addEventListener('click', e => {
         e.stopPropagation();
-        const { currentTarget, target: { parentNode, className } } = e;
+        const {
+          currentTarget,
+          target: { parentNode, className },
+        } = e;
         const id = Number(parentNode.getAttribute(this.dataId));
 
         const store = this.storage.getItemFromStorage(this.todolist);
 
         switch (className) {
           case 'todo-title': {
-            // console.log('todo-title:', className);
             currentTarget.classList.toggle(this.checked);
 
-            const getObject = store.filter(o => o.id === id)
-              .map((obj) => {
+            const getObject = store
+              .filter(o => o.id === id)
+              .map(obj => {
                 const newCheck = obj.check !== true;
                 return { ...obj, check: newCheck };
               });
 
-            const object = store.map(obj => getObject.find(o => o.id === obj.id) || obj);
+            const object = store.map(
+              obj => getObject.find(o => o.id === obj.id) || obj
+            );
 
             this.storage.removeItemFromStorage(this.todolist);
             this.storage.setToStorage(this.todolist, object);
@@ -150,14 +152,11 @@ class ToDoListController {
             break;
           }
           case 'todo-description': {
-            // console.log('todo-description:', className);
             currentTarget.classList.toggle(this.more);
             break;
           }
           case 'todo-remove': {
-            // console.log('todo-remove:', className);
             const object = store.filter(o => o.id !== id);
-            // this.saveToLocarstore(newObj);
 
             this.storage.removeItemFromStorage(this.todolist);
             this.storage.setToStorage(this.todolist, object);
@@ -169,31 +168,6 @@ class ToDoListController {
             break;
         }
       });
-    });
-  }
-
-  createLightButton() {
-    const switchColor = document.querySelector('.app-todo');
-    const addLightOnOff = document.createElement('div');
-    addLightOnOff.id = this.light;
-    addLightOnOff.innerText = this.light;
-    switchColor.appendChild(addLightOnOff);
-  }
-
-  switchLight() {
-    this.createLightButton();
-    const light = document.querySelector(`#${this.light}`);
-    light.addEventListener('click', () => {
-      const container = document.body.style.backgroundColor;
-      if (container === 'whitesmoke') {
-        document.body.style.backgroundColor = '#363636';
-        document.body.classList.add('is-on');
-        document.body.classList.remove('is-off');
-      } else {
-        document.body.style.backgroundColor = 'whitesmoke';
-        document.body.classList.add('is-off');
-        document.body.classList.remove('is-on');
-      }
     });
   }
 }
