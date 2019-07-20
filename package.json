@@ -6,12 +6,11 @@
   "author": "Grzegorz Tomicki <gtomik@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --config ./config/webpack.config.js --mode development --open",
+    "dev": "webpack-dev-server --progress --config ./config/webpack.config.js --mode development --open",
     "prod": "webpack --config ./config/webpack.config.js --mode production"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.5.5",
     "autoprefixer": "^9.6.1",
     "babel-loader": "^8.0.6",
@@ -19,12 +18,12 @@
     "core-js": "^3.1.4",
     "css-loader": "^3.1.0",
     "cssnano": "^4.1.10",
-    "eslint": "^5.16.0",
+    "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-config-standard": "^13.0.1",
     "eslint-plugin-html": "^6.0.0",
-    "eslint-plugin-import": "^2.18.1",
+    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-promise": "^4.2.1",
@@ -40,11 +39,12 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.36.1",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.7.1"
+    "webpack-dev-server": "^3.7.2"
   },
   "browserslist": [
     "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
+    "last 1 version",
+    "not ie 11",
+    "not dead"
   ]
 }
