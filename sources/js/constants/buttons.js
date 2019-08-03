@@ -6,11 +6,13 @@ const buttons = {
   rowClass: 'toolbar',
   taskDescription: '.taskDescription',
   buttons: [
-    { type: 'text', key: 'text' },
-    { type: 'bold', key: 'b' },
-    { type: 'italic', key: 'i' },
-    { type: 'insertUnorderedList', key: 'u' },
-    { type: 'insertOrderedList', key: 'o' },
+    { type: 'text', key: 'text', tooltip: 'Inserted as text' },
+    { type: 'bold', key: 'b', tooltip: 'Bold' },
+    { type: 'italic', key: 'i', tooltip: 'Italic' },
+    { type: 'insertUnorderedList', key: 'u', tooltip: 'Bullet list' },
+    { type: 'insertOrderedList', key: 'o', tooltip: 'Numbered list' },
+    { type: 'removeFormat', key: 'clear', tooltip: 'Remove format' },
+    // { type: 'storage', key: 'save locally', tooltip: 'Save locally' },
   ],
 };
 

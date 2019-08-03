@@ -9,7 +9,7 @@ class FormView {
         </div>
         <label for="taskDescription">Description</label>
         <div class="u-full-width taskDescription" id="taskDescription" contenteditable="true"></div>
-        <input class="button-primary" id="save" type="submit" value="SAVE TASK">
+        <button type="submit" class="button-primary" id="save" value="SAVE TASK">SAVE TASK</button>
       </form>
     
       <div class="taskList"></div>

@@ -12,6 +12,7 @@ class ToDoListController {
     this.taskName = '#taskName';
     this.taskDescription = '#taskDescription';
     this.buttonText = '.button-text';
+    this.date = new Date();
 
     this.storage = storage;
     this.counter = counter;
@@ -23,15 +24,14 @@ class ToDoListController {
   }
 
   initTodoList() {
-    const save = document.getElementById('save');
+    const saveTask = document.getElementById('save');
 
-    save.addEventListener('click', e => {
-      e.stopPropagation();
+    saveTask.addEventListener('click', e => {
       e.preventDefault();
 
       const id = this.getLastId();
 
-      const name = document.querySelector(this.taskName).value.trim();
+      const nameTask = document.querySelector(this.taskName);
       const description = document.querySelector(this.taskDescription);
 
       const typeInsert = document.querySelector(this.buttonText).value;
@@ -39,20 +39,57 @@ class ToDoListController {
       const insertType =
         typeInsert === 'text' ? description.textContent : description.innerHTML;
 
-      if (name) {
+      if (nameTask.value.trim()) {
         const list = {
           id,
-          name,
+          name: nameTask.value.trim(),
           info: insertType,
           check: false,
         };
         description.innerHTML = '';
         this.createLocalStorage(list);
+      } else {
+        this.requireInput(nameTask);
       }
     });
+
     this.output();
     this.light.switchLight();
     this.buttons.buttonCreate();
+
+    // this.saveStorageToFile();
+  }
+
+  requireInput(nameTask) {
+    nameTask.setAttribute(
+      'style',
+      'border: 1px solid red; box-shadow: 0 0 15px 2px rgba(255,0,0,0.2);'
+    );
+
+    nameTask.addEventListener('input', () => {
+      nameTask.removeAttribute('style');
+    });
+  }
+
+  saveStorageToFile() {
+    const storageSave = document.querySelector('.button-storage');
+
+    storageSave.addEventListener('click', () => this.saveStorageToFile());
+
+    const digits = Math.floor(Math.random() * 9000000000) + 1000000000;
+    const lengthStorage = this.storage.getItemFromStorage(this.todolist);
+    const a = document.createElement('a');
+    a.setAttribute(
+      'href',
+      `data:text/plain;charset=utf-u,${encodeURIComponent(
+        JSON.stringify(lengthStorage)
+      )}`
+    );
+    a.setAttribute(
+      'download',
+      `${this.date.toLocaleDateString()}-${digits}.txt`
+    );
+    a.click();
   }
 
   getLastId() {
@@ -63,7 +100,6 @@ class ToDoListController {
         id.push(item.id);
       });
     }
-
     const idNumber = id.length === 0 ? 1 : Math.max(...id) + 1;
     return idNumber;
   }
@@ -113,6 +149,7 @@ class ToDoListController {
         return taskList.appendChild(div);
       });
     }
+
     this.handleEvent();
     this.counter.renderCounter();
   }
