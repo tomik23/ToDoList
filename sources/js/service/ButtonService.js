@@ -62,19 +62,26 @@ class ButtonsService {
 
         const command = target.getAttribute('data-command');
         const buttonText = document.querySelector('.button-text');
+        // https://stackoverflow.com/a/23891233/10424385
+        // const linkURL = prompt('Enter a URL:', 'http://');
+        // editorWindow.document.execCommand('insertHTML', false, '<a href="' + linkURL + '" target="_blank">' + sText + '</a>');
         document.execCommand(command, false, null);
 
-        if (target.value === this.typeText) {
-          type = this.typeHtml;
-          textTooltip = 'Inserted as html';
-        } else {
-          type = this.typeText;
-          textTooltip = 'Inserted as text';
-        }
+        // console.log(this.typeText);
 
-        buttonText.value = type;
-        buttonText.textContent = type;
-        buttonText.dataset.tooltip = textTooltip;
+        if (target.value === this.typeText || target.value === this.typeHtml) {
+          if (target.value === this.typeText) {
+            type = this.typeHtml;
+            textTooltip = 'Inserted as html';
+          } else {
+            type = this.typeText;
+            textTooltip = 'Inserted as text';
+          }
+
+          buttonText.value = type;
+          buttonText.textContent = type;
+          buttonText.dataset.tooltip = textTooltip;
+        }
       });
     });
 

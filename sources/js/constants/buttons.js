@@ -11,6 +11,7 @@ const buttons = {
     { type: 'italic', key: 'i', tooltip: 'Italic' },
     { type: 'insertUnorderedList', key: 'u', tooltip: 'Bullet list' },
     { type: 'insertOrderedList', key: 'o', tooltip: 'Numbered list' },
+    // { type: 'createLink', key: 'a', tooltip: 'Create Link' },
     { type: 'removeFormat', key: 'clear', tooltip: 'Remove format' },
     // { type: 'storage', key: 'save locally', tooltip: 'Save locally' },
   ],
