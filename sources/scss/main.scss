@@ -4,7 +4,8 @@
   --light: #F5F5F5;
   --black: #000;
   --blue: #33C3F0;
-  --gray: #888;
+  --gray: #b3b3b3;
+  --blue-light: #d6f6ff;
   --gray-lighten: #D1D1D1;
   --gray-light: #f6f6f6;
   --gray-dark: #222222;
@@ -50,7 +51,7 @@
     }
 
     &.checked {
-      background-color: var(--gray);
+      background-color: var(--blue);
       color: var(--white);
     }
 
@@ -181,7 +182,7 @@
     &:before {
       content: '';
       position: absolute;
-      border-color: var(--white);
+      border-color: var(--gray-dark);
       border-style: solid;
       border-width: 0 2px 2px 0;
       top: 10px;
