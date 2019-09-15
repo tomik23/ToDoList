@@ -1,0 +1,25 @@
+.header {
+  position: relative;
+  display: grid;
+  border-radius: 6px 6px 0 0;
+  grid-template-columns: 1fr 100px;
+  border-bottom: 1px solid rgba(112, 112, 112, 0.18);
+  padding: 20px;
+  background: linear-gradient(to top, rgba(128, 128, 128, 0.1) 0%, rgba(255, 255, 255, 0.8) 100%);
+}
+
+.header-day {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--violet);
+}
+
+.header-month {
+  margin-top: 5px;
+  color: var(--gray-dark);
+}
+
+.task-left {
+  text-align: right;
+  font-size: 1.4rem;
+}

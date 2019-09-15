@@ -1,4 +1,5 @@
 import FormView from '../view/FormView';
+import { week, month } from '../constants/calendar';
 
 class ToDoListController {
   constructor(storage, counter, buttons, light) {
@@ -6,7 +7,7 @@ class ToDoListController {
     this.taskList = '.taskList';
     this.item = 'item';
     this.checked = 'checked';
-    this.taskForm = '.taskForm';
+    this.taskForm = '.task-form';
     this.dataId = 'data-id';
     this.more = 'more';
     this.taskName = '#taskName';
@@ -56,8 +57,40 @@ class ToDoListController {
     this.output();
     this.light.switchLight();
     this.buttons.buttonCreate();
+    this.showHideForm();
+    this.dateTime();
+  }
 
-    // this.saveStorageToFile();
+  dateTime() {
+    const headerMonth = document.querySelector('.header-month');
+    const headerDay = document.querySelector('.header-day');
+    const now = new Date();
+
+    const nowDate = now.getDate().toString();
+
+    headerDay.innerText = `${week[now.getDay()]} ${nowDate.padStart(2, '0')}`;
+    headerMonth.innerText = month[now.getMonth()];
+  }
+
+  showHideForm() {
+    const showForm = document.querySelector('.show-form');
+    const closeForm = document.querySelector('.close-form');
+    const taskForm = document.querySelector('.task-form');
+    const formGroup = document.querySelector('.form-group');
+    const taskName = document.querySelector('.task-name');
+
+    showForm.addEventListener('click', () => {
+      showForm.setAttribute('data-show', 'hidden');
+      formGroup.removeAttribute('data-show');
+      taskForm.classList.add('anim-height');
+    });
+
+    closeForm.addEventListener('click', () => {
+      showForm.removeAttribute('data-show');
+      formGroup.setAttribute('data-show', 'hidden');
+      taskName.removeAttribute('style');
+      taskForm.classList.remove('anim-height');
+    });
   }
 
   requireInput(nameTask) {
@@ -142,7 +175,11 @@ class ToDoListController {
         const row = `
           <div class="todo-title">${name}</div>
           ${taskDescription}
-          <span class="todo-remove" title="remove task"></span>
+          <span class="todo-remove" data-inverted data-tooltip="Remove task" title="remove task" data-show="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 448">
+              <path d="M128 184v144c0 4.5-3.5 8-8 8h-16c-4.5 0-8-3.5-8-8V184c0-4.5 3.5-8 8-8h16c4.5 0 8 3.5 8 8zm64 0v144c0 4.5-3.5 8-8 8h-16c-4.5 0-8-3.5-8-8V184c0-4.5 3.5-8 8-8h16c4.5 0 8 3.5 8 8zm64 0v144c0 4.5-3.5 8-8 8h-16c-4.5 0-8-3.5-8-8V184c0-4.5 3.5-8 8-8h16c4.5 0 8 3.5 8 8zm32 181V128H64v237c0 12 6.75 19 8 19h208c1.25 0 8-7 8-19zM120 96h112l-12-29.25c-.75-1-3-2.5-4.25-2.75H136.5c-1.5.25-3.5 1.75-4.25 2.75zm232 8v16c0 4.5-3.5 8-8 8h-24v237c0 27.5-18 51-40 51H72c-22 0-40-22.5-40-50V128H8c-4.5 0-8-3.5-8-8v-16c0-4.5 3.5-8 8-8h77.25l17.5-41.75C107.75 42 122.75 32 136 32h80c13.25 0 28.25 10 33.25 22.25L266.75 96H344c4.5 0 8 3.5 8 8z"/>
+            </svg>
+          </span>
         `;
         div.innerHTML = row;
 

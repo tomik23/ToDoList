@@ -1,0 +1,47 @@
+.toolbar {
+  display: flex;
+  margin: 0 -3px 10px;
+
+  .button-removeFormat {
+    margin-left: auto;
+  }
+}
+
+.button {
+  &-toolbar {
+    cursor: pointer;
+    height: 37px;
+    font-size: 14px;
+    margin: 3px;
+    padding: 0 5px;
+    letter-spacing: 0;
+    font-weight: 100;
+    border-radius: 3px;
+    text-transform: uppercase;
+    border: 1px solid var(--blue);
+    background: var(--white);
+    outline: none;
+    transition: all 300ms ease-in-out;
+
+    &:hover {
+      background: var(--blue);
+      color: var(--white);
+    }
+  }
+
+  &-text,
+  &-removeFormat {
+    width: 63px;
+  }
+
+  &-bold {
+    font-weight: 700;
+  }
+
+  &-bold,
+  &-italic,
+  &-insertUnorderedList,
+  &-insertOrderedList {
+    width: 37px;
+  }
+}

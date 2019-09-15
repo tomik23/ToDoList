@@ -1,8 +1,8 @@
 const light = {
   lightClass: '.app-todo',
   lightText: 'light',
-  lightColorA: 'whitesmoke',
-  lightColorB: '#363636',
+  lightColorA: 'rgb(41, 41, 41)',
+  lightColorB: 'rgb(98, 93, 227)',
   lightOn: 'is-todo-on',
   lightOff: 'is-todo-off',
 };

@@ -1,0 +1,109 @@
+.task-form {
+  height: 0;
+  opacity: 0;
+  transition: all 100ms ease-in-out;
+}
+
+.anim-height {
+  margin: 20px 0 -20px;
+  padding: 20px;
+  height: 326px;
+  opacity: 1;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.taskDescription {
+  padding: 6px 10px;
+  height: 150px;
+  border: 1px solid var(--gray-light);
+  background-color: var(--white);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  overflow: auto;
+  resize: vertical;
+
+  ul,
+  ol {
+    margin-left: 17px;
+  }
+
+  li {
+    margin-bottom: 0;
+  }
+
+  &:focus {
+    border: 1px solid var(--blue);
+    outline: 0;
+  }
+}
+
+.show-form {
+  position: absolute;
+  right: 20px;
+  bottom: -26px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--red);
+  color: var(--white);
+  font-size: 40px;
+  box-shadow: var(--box-shadow-button);
+  transition: all .1s ease-in-out;
+  z-index: 100;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    transform: rotate(45deg);
+  }
+}
+
+.task-name {
+  border: 1px solid var(--gray-light);
+  border-radius: 6px;
+  font-size: 1.4rem;
+  height: 45px;
+  padding: 0 10px;
+  margin-bottom: 20px;
+
+  &:focus {
+    border: 1px solid var(--blue);
+    outline: 0;
+  }
+}
+
+.form-group {
+  position: absolute;
+  right: 20px;
+  bottom: -18px;
+
+  .close-form {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    width: 79px;
+    height: 39px;
+    border: 1px solid var(--gray-lighten);
+    border-radius: 6px;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow-button);
+    margin-right: 15px;
+  }
+
+  .save-form {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    width: 98px;
+    height: 39px;
+    border: 1px solid var(--red);
+    border-radius: 6px;
+    color: var(--white);
+    background-color: var(--red);
+    box-shadow: var(--box-shadow-button);
+  }
+}

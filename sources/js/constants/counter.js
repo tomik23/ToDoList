@@ -1,7 +1,7 @@
 const counter = {
   checked: '.checked',
   item: '.item',
-  leftTask: '.leftTask',
+  leftTask: '.task-left',
   taskLeftText: 'task left',
 };
 

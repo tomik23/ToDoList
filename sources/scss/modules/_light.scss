@@ -1,0 +1,19 @@
+#light {
+  position: absolute;
+  z-index: 1;
+  top: -27px;
+  right: 30px;
+  cursor: pointer;
+  color: var(--white);
+  text-transform: uppercase;
+  font-size: 12px;
+
+  &:after {
+    position: absolute;
+    content: 'OFF';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    right: -28px;
+  }
+}

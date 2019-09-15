@@ -1,0 +1,154 @@
+.taskList {
+  &:empty {
+    border: none;
+  }
+
+  margin: 20px auto 0;
+  max-width: 650px;
+}
+
+.item {
+  padding: 20px 20px 20px 40px;
+  border-left: 0;
+  border-bottom: 1px solid var(--gray-light);
+  transition: border-left 200ms ease-in-out;
+
+  &:hover {
+    color: var(--black);
+
+    .todo-remove {
+      display: block;
+      fill: var(--blue);
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      border-left: 7px solid var(--blue);
+    }
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.checked {
+    color: var(--gray-lighten);
+
+    .todo-remove {
+      display: block;
+      fill: var(--gray-lighten);
+    }
+
+    &:after {
+      content: "\2713";
+      font-weight: 700;
+      font-size: 1.8rem;
+      line-height: 135%;
+      color: var(--white);
+      text-align: center;
+    }
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--gray-lighten);
+    border-radius: 4px;
+    top: 20px;
+    left: 20px;
+  }
+
+}
+
+.todo {
+  &-title {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 0 50px 0 -45px;
+    padding-left: 65px;
+    height: 26px;
+    line-height: 26px;
+    white-space: nowrap;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    z-index: 9;
+  }
+
+  &-description {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    max-height: 24px;
+    margin: 10px 50px 0 -34px;
+    padding-left: 54px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 130%;
+
+    ul {
+      margin-left: 19px;
+    }
+
+    ol {
+      margin-left: 15px;
+    }
+
+    &:before {
+      position: absolute;
+      content: '→';
+      left: 20px;
+      top: -2px;
+    }
+  }
+
+  &-remove {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 20px;
+    right: 33px;
+    margin: auto;
+    z-index: 100;
+    cursor: pointer;
+
+    svg {
+      pointer-events: none;
+      width: 25px;
+      height: 25px;
+      z-index: 5;
+    }
+  }
+}
+
+.checked {
+  &::after {
+    border: 1px solid var(--red);
+    background-color: var(--red);
+  }
+
+  .todo-title,
+  .todo-description {
+    text-decoration: line-through;
+  }
+}
+
+.more {
+  .todo-description {
+    max-height: 700px;
+    white-space: normal;
+    text-overflow: initial;
+    transition: max-height 1s ease-in-out;
+    overflow: auto;
+
+    &:before {
+      transform: rotate(90deg)
+    }
+  }
+}
