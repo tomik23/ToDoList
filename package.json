@@ -7,18 +7,12 @@
   "license": "MIT",
   "scripts": {
     "dev": "concurrently \"yarn sass:dev\" \"yarn watch\"",
-    "prod": "yarn build && yarn sass:prod",
+    "prod": "yarn build && yarn sass:prod && yarn postcss",
     "build": "rollup --config --environment PRODUCTION",
     "watch": "rollup --config --watch",
     "sass:prod": "node-sass ./sources/scss/main.scss ./docs/style.min.css --output-style compressed",
-    "sass:dev": "node-sass ./sources/scss/main.scss ./docs/style.min.css -w"
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {},
-      "postcss-css-variables": {},
-      "cssnano": {}
-    }
+    "sass:dev": "node-sass ./sources/scss/main.scss ./docs/style.min.css -w",
+    "postcss": "postcss ./docs/style.min.css -r"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
@@ -34,6 +28,7 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-prettier": "^3.1.3",
     "node-sass": "^4.14.1",
+    "postcss-cli": "^7.1.1",
     "postcss-css-variables": "^0.17.0",
     "prettier": "^2.0.5",
     "rollup": "^2.14.0",
