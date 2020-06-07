@@ -18,10 +18,6 @@ class LightService {
   switchLight() {
     this.createLightButton();
 
-    // document.body.setAttribute(
-    //   'style',
-    //   `background-color: ${this.lightColorA}`
-    // );
     const light = document.querySelector(`#${this.lightText}`);
 
     light.addEventListener('click', () => {

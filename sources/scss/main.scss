@@ -1,9 +1,10 @@
-@import url(//fonts.googleapis.com/css?family=Lato:300:400:700);
+@import url('//fonts.googleapis.com/css?family=Lato:300:400:700');
 
-@import "./modules/tooltip";
-@import "./modules/global";
-@import "./modules/header";
-@import "./modules/form";
-@import "./modules/toolbar";
-@import "./modules/taskList";
-@import "./modules/light";
+
+@import './modules/global';
+@import './modules/tooltip';
+@import './modules/header';
+@import './modules/form';
+@import './modules/toolbar';
+@import './modules/taskList';
+@import './modules/light';

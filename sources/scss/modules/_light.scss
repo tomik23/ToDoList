@@ -7,13 +7,18 @@
   color: var(--white);
   text-transform: uppercase;
   font-size: 12px;
+  user-select: none;
 
   &:after {
     position: absolute;
-    content: 'OFF';
+    content: 'ON';
     display: inline-block;
     width: 24px;
     height: 24px;
     right: -28px;
   }
+}
+
+.is-todo-off #light::after {
+  content: 'OFF';
 }
